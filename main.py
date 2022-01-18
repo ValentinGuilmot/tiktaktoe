@@ -14,7 +14,7 @@ input9=' '
 
 places={'1':input1,'2':input2,'3':input3,'4':input4,'5':input5,'6':input6,'7':input7,'8':input8,'9':input9}
 
-
+optionsList=[]
  
 
 def display_board():
@@ -32,15 +32,23 @@ def start_game():
         else:
             print('Answer not valid!')
 
-playerA=''
-playerB=''
+
+def choose_option():
+    global playerA
+    playerA=input('Player 1, do you want to be X or O ?: ')
+    player_one()
 
 def player_one():
-    playerA=input('Player 1, do you want to be X or O ?: ')
-    display_board()
-    # r=input(('The grid u see is representing your numpad click the number of the place were you want to set your ')+ playerA(': '))
-    # places[r]=playerA.upper()
-    display_board()
+    # display_board()
+    r=input(('The grid u see is representing your numpad click the number of the place were you want to set your ')+ playerA + (': '))
+    
+    if r not in optionsList:
+        places[r]=playerA.upper()
+        display_board()
+    else:
+        print("Sorry it seemse like that box is already in use.")
+        r=input(('The grid u see is representing your numpad click the number of the place were you want to set your ')+ playerA + (': '))
+    optionsList.append(r)
     
 def player_two():
     if playerA.lower=='x':
@@ -54,7 +62,7 @@ def player_two():
 
     
 
-display_board()
-# start_game()
+# display_board()
+start_game()
+choose_option()
 player_one()
-player_two()
